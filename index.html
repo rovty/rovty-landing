@@ -14,6 +14,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
+    <!-- Skip to content for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <!-- Loading spinner -->
+    <div class="loading-spinner" id="loadingSpinner"></div>
+    
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container">
@@ -35,7 +41,8 @@
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="hero">
+    <main id="main-content">
+        <section id="home" class="hero">
         <!-- Interactive Background Elements -->
         <canvas class="hero-canvas" id="particleCanvas"></canvas>
         <div class="grid-overlay"></div>
@@ -53,32 +60,40 @@
                         <path d="m9 18 6-6-6-6"/>
                     </svg>
                 </a>
+                <div class="scroll-indicator" onclick="document.getElementById('services').scrollIntoView({behavior: 'smooth'})">
+                    <span>Scroll to explore</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="m7 13 5 5 5-5"/>
+                        <path d="m7 6 5 5 5-5"/>
+                    </svg>
+                </div>
             </div>
         </div>
         <div class="hero-bg"></div>
-    </section>
+        </section>
+    </main>
 
     <!-- Services Section -->
     <section id="services" class="services">
         <div class="container">
             <h2 class="section-title">Our Services</h2>
             <div class="services-grid">
-                <div class="service-card animate-on-scroll">
+                <div class="service-card animate-on-scroll" data-number="01">
                     <div class="service-icon">🌐</div>
                     <h3>Web Development</h3>
                     <p>Build scalable, responsive applications optimized for performance using modern frameworks, cutting-edge technologies, and industry best practices.</p>
                 </div>
-                <div class="service-card animate-on-scroll">
+                <div class="service-card animate-on-scroll" data-number="02">
                     <div class="service-icon">⚙️</div>
                     <h3>DevOps</h3>
                     <p>Streamline your development lifecycle with robust CI/CD pipelines, infrastructure as code, and intelligent automation solutions.</p>
                 </div>
-                <div class="service-card animate-on-scroll">
+                <div class="service-card animate-on-scroll" data-number="03">
                     <div class="service-icon">☁️</div>
                     <h3>Cloud-Native Solutions</h3>
                     <p>Leverage Kubernetes, microservices architecture, and leading cloud platforms to build resilient, scalable, and future-ready systems.</p>
                 </div>
-                <div class="service-card animate-on-scroll">
+                <div class="service-card animate-on-scroll" data-number="04">
                     <div class="service-icon">🔒</div>
                     <h3>Information Security</h3>
                     <p>Comprehensive security assessments, secure-by-design principles, and compliance frameworks to safeguard your digital assets.</p>
@@ -86,6 +101,8 @@
             </div>
         </div>
     </section>
+
+    <div class="section-divider"></div>
 
     <!-- About Section -->
     <section id="about" class="about">
@@ -107,6 +124,8 @@
             </div>
         </div>
     </section>
+
+    <div class="section-divider"></div>
 
     <!-- Why Choose Us Section -->
     <section class="why-choose">
@@ -137,12 +156,21 @@
         </div>
     </section>
 
+    <div class="section-divider"></div>
+
     <!-- Testimonials Section -->
     <section class="testimonials">
         <div class="container">
             <h2 class="section-title">What Our Clients Say</h2>
             <div class="testimonials-grid">
                 <div class="testimonial animate-on-scroll">
+                    <div class="testimonial-rating">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                    </div>
                     <div class="testimonial-content">
                         <p>Rovty transformed our legacy infrastructure into a modern, cloud-native architecture that exceeded all expectations. Their expertise in DevOps and security helped us achieve 99.9% uptime while reducing operational costs by 40%. The team's professionalism and technical excellence are unmatched.</p>
                     </div>
@@ -152,6 +180,13 @@
                     </div>
                 </div>
                 <div class="testimonial animate-on-scroll">
+                    <div class="testimonial-rating">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                    </div>
                     <div class="testimonial-content">
                         <p>Working with Rovty was a game-changer for our digital transformation. They delivered our complex web application ahead of schedule with exceptional quality and performance. Their attention to detail, proactive communication, and innovative approach made the entire project seamless and enjoyable.</p>
                     </div>
@@ -163,6 +198,8 @@
             </div>
         </div>
     </section>
+
+    <div class="section-divider"></div>
 
     <!-- Contact Section -->
     <section id="contact" class="contact">
@@ -200,6 +237,30 @@
                         </svg>
                     </a>
                 </div>
+                <div class="contact-form">
+                    <h3>Send us a message</h3>
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" placeholder="Your name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" placeholder="Tell us about your project..." required></textarea>
+                        </div>
+                        <button type="submit" class="cta-button">
+                            <span>Send Message</span>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="m22 2-7 20-4-9-9-4z"/>
+                                <path d="M22 2 11 13"/>
+                            </svg>
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
     </section>
@@ -224,6 +285,13 @@
             </div>
         </div>
     </footer>
+
+    <!-- Back to top button -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m18 15-6-6-6 6"/>
+        </svg>
+    </button>
 
     <script src="main.js"></script>
 </body>
